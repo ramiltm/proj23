@@ -1,0 +1,57 @@
+{% extends "members/base.html" %}
+
+
+{% block content %}
+
+	<p><h4 style="font-size: 24px; color: purple;"> List of Employee</h4><p><hr />
+
+
+	
+	<table class="table table-sm table-borderless table-hover">
+		<thead class="border-bottom font-weight-bold bg-secondary">
+			<tr>
+				<td class="align-middle">Name</td>
+				<!--<td>First Name</td> -->
+				<td class="align-middle">Division</td>
+				<td class="align-middle">Position</td>
+				<td class="align-middle">Emp Status</td>
+				<td>
+					<a href="{% url 'employee_insert' %}" class="btn btn-outline-success">
+						<i class="fas fa-plus"></i> Add New
+					</a>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for emp in employee_list %}
+				<tr>
+					<td><a href="/emp/{{ emp.id }}/">{{ emp.lastname }}, {{ emp.firstname }} {{ emp.middleI }}</a></td>
+					<!-- <td>{{ emp.firstname }}</td> -->
+					<td>{{ emp.division}}
+					<td>{{ emp.position }}</td>
+					<td>{{ emp.empStatus}}</td>
+					<td>
+						<a href="{% url 'employee_update' emp.id %}" class="btn text-secondary px-0">
+							<i class="far fa-edit fa-lg"></i>
+						</a>
+
+						<!-- <a href="/mr/{{ id }}/" class="btn text-secondary px-0">
+							<i class="far fa-folder-open fa-lg"></i>
+						</a> -->
+						<a href="" class="btn text-secondary px-0">
+							<i class="far fa-folder-open fa-lg"></i>
+						</a>
+
+						<form action="{% url 'employee_delete' emp.id %}" method="post" class=d-inline>
+							{% csrf_token %}
+							<button type="submit" class="btn">
+								<i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+							</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock content %}

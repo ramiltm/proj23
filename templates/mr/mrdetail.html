@@ -1,0 +1,49 @@
+{% extends "mr/base.html" %}
+
+{% block content %}
+	<h4 style="font-size: 24px; color: purple;">Issued Property (MR)</h4>
+	<div class="row">
+		<div class="col-md-10">
+			<h3> {{emp.lastname}}, {{ emp.firstname }} {{ emp.middleI}}</h3>
+		</div>
+		<div class="col-md-2">
+			<a href="{% url 'issued_property' %}" class="btn btn-secondary float-right">
+				<i class="fas fa-stream"></i> Back to List
+			</a>
+		</div>
+	</div>
+	<table class="table table-borderless table-hover">
+		<thead class="border-bottom font-weight-bold">
+			<tr>
+				<th scope="col">Asset Type</th>
+				<th scope="col">Description</th>
+				<th scope="col">Property No.</th>
+				<th scope="col">Serial No.</th>
+				<th scope="col">Year Acquired</th>
+				<th scope="col">Issued To</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				{% for mr in emp.emps.all %}   
+				<!-- <emp frm detail view, emps fk to prop> -->
+					
+					<td>{{ mr.asset_type}}</td>
+					<!-- <td><a href="services/<id>/">{{ mr.asset_type}}</a></td> -->
+					<td>{{ mr.decription }}</td>
+					<td><a href="/mr/service_propDetail/{{mr.id}}/">{{ mr.property_no}}</a></td>
+					<td>{{ mr.serial_no }}</td>
+					<td>{{ mr.year_acquired}}</td>
+					<td>{{ mr.issued_to }}</td>
+			</tr>
+				{% endfor %}
+
+		</tbody>	
+	</table>
+	<div class="col-md-12 float-right">
+				<a href="{% url 'issued_property' %}" class="btn btn-secondary float-right">
+					<i class="fas fa-stream"></i> Back to List
+				</a>
+	</div>
+
+{% endblock %}

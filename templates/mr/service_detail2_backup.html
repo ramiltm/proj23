@@ -1,0 +1,60 @@
+{% extends "mr/base.html" %}
+
+{% load userfilter_extras %}
+
+{% block content %}
+<p><h4 style="font-size: 24px; color: purple;"> Services Rendered</h4></p><hr />
+
+<div class="row">
+	<div class="col-md-10">
+		Property No.: <strong>{{ serviceprop.prop.property_no }}</strong> Serial No.: <strong>{{ serviceprop.prop.serial_no }}</strong>
+		Description: <strong>{{ serviceprop.prop.decription }}</strong>
+	</div>
+	<div class="col-md-2">
+		<a href="{% url 'issued_property' %}" class="btn btn-secondary float-right">
+			<i class="fas fa-stream"></i> Back to List
+		</a>
+	</div>
+	
+</div><p />
+
+<!-- <p>Property No.: <h5>{{ serviceprop.prop.property_no }}</h5> Serial No.: <h5>{{ serviceprop.prop.serial_no }}</h5></p>
+<p>Description: <h5>{{ serviceprop.prop.decription }}</h5></p> -->
+
+<table class="table table-sm table-hover">
+	<!-- <table class="table table-sm table-bordered table-hover"> -->
+		<thead class="border-bottom font-weight-bold bg-secondary">
+			<tr>
+				
+				<td class="align-middle">Date</td>
+				<td class="align-middle">Issues</td>
+				<td class="align-middle">Service Rendered</td>
+				<td class="align-middle">Action Officer</td>
+				<td class="align-middle">Remarks</td>
+				<!-- add new button -->
+			</tr>
+		</thead>
+		<tbody>
+			
+				<tr>
+					
+					<td>{{ serviceprop.date}}</td>
+					<td>{{ serviceprop.issues }}</td>
+					<td>{{ serviceprop.service_rendered }}</td>
+					<td>{{ serviceprop.action_officer}}</td>
+					<td>{{ serviceprop.remarks}}</td>
+
+					<!-- admin module -->
+					
+				</tr>
+		
+		</tbody>
+	</table>
+	
+	<div class="col-md-12 float-right">
+		<a href="{% url 'issued_property' %}" class="btn btn-secondary float-right">
+			<i class="fas fa-stream"></i> Back to List
+		</a>
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,39 @@
+<!-- emp_pdfreport.html -->
+{% extends "mr/base_empreport.html" %}
+
+{% block title %}PDF Report - Employee Detail{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+    	<div class="col-10">
+            <h4 style="font-size: 24px; color: purple;">Employee Detail</h4>
+        </div>
+    </div>
+
+    <div class="row">
+    	<div class="col-12">
+	    	<table class="table">
+	    		<tr>
+	    			<td><h3 class="text-muted"> {{empDet.lastname}}, {{ empDet.firstname }} {{ empDet.middleI}}</h3></td>
+	    		</tr>
+
+	    		<tr>
+	    			<td class="bgcolor">Division:</td>
+	    			<td><strong> {{ empDet.division }}</strong></td>
+	    			<td class="bgcolor">Professinal Status:</td>
+	    			<td><strong>{{ empDet.profstatus }}</strong></td>
+	    		</tr>
+	    		<tr>
+	    			<td class="bgcolor">Position:</td>
+	    			<td><strong>{{ empDet.position }}</strong></td>
+	    			<td class="bgcolor">Emp. Status:</td>
+	    			<td><strong>{{ empDet.empStatus}}</strong></td>
+	    		</tr>
+	    	</table>
+	    </div>
+    </div> <!-- end row -->
+
+</div> <!-- end container -->
+{% endblock content %}

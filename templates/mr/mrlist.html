@@ -1,0 +1,83 @@
+{% extends "mr/base.html" %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4 style="font-size: 24px; color: purple;">Property Acknowledgement</h4>
+        </div>
+
+        <div class="col-4">
+            <form class="form-inline ml-auto" method='GET' action=''>
+                <input class="form-control mr-sm-2" type='text' name='q' placeholder='Lastname/Division' aria-label="Search"/>
+                <!-- <input type='submit' value='Search' /> -->
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+            </form>
+        </div>
+    </div> <hr />
+</div>
+
+	{% if emppages %}
+
+	{% for emp in emppages %}
+
+	<div class="container">
+    	<div class="row">
+        	<div class="col-10">
+				<h4>{{ emp.lastname}}, {{ emp.firstname}} {{ emp.middleI}}</h4>
+			</div>
+
+			<div class="col-2 align-self-center">
+                        <!-- <button type="button" class="btn btn-outline-dark">Details</button> -->
+                        <a href="/mr/issued_property_detail/{{ emp.id }}/" class="btn btn-outline-dark" role="button" aria-pressed="true">Show Details</a>
+            </div>
+        </div> 
+
+        <div class="row">
+        		&nbsp;  Division: &nbsp; <h5> {{ emp.division }} &nbsp; </h5> Position: &nbsp; <h5>{{ emp.position}} &nbsp;</h5> Empl. Status: &nbsp;<h5>{{ emp.empStatus }}</h5>
+        </div> <hr />
+
+
+	<!-- <table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Asset Type</th>
+				<th scope="col">Unit/Office</th>
+			</tr>
+
+			<tr>
+				{% for prop in Property.empid.all %}
+				<tr>
+					<td>{{ emp.property.asset_type}}</td>
+					<td>{{ emp.property.unit_office}}</td>
+				</tr>
+				
+			</tr>
+				{% endfor %}
+
+		</thead>
+	</table> -->
+	{% endfor %}
+
+	{% endif %}
+
+	<div class="pagination">
+        <span class="step-links">
+            {% if emppages.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page=={{ lgupages.previous_page_number }}"> previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ emppages.number }} of {{ emppages.paginator.num_pages }}.
+            </span>
+
+            {% if emppages.has_next %}
+                <a href="?page={{ emppages.next_page_number }}"> next</a>
+                <a href="?page={{ emppages.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock content %}

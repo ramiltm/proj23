@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<title>{% block title %}Employee Detail{% endblock title %}</title>
+
+	<link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
+
+	<style type="text/css">
+		@page {
+			size: a4;
+			margin: 1cm;
+		}
+		.table, td, th {
+			border-bottom: 1px solid #ddd;
+			border-top: 1px solid #ddd;
+			text-align: left;
+		}
+		.table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		.table th, td {
+			padding: 5px;
+			text-align: left;
+		}
+		.td{
+			word-break: inherit;
+		}
+		.list-group h3{
+			font-size: 3em;
+		}
+		.list-group p {
+			font-size: 1em;
+		}
+		.bgcolor {
+			background-color: #ddd;
+		}
+		.table1 {
+			width: 100%;
+			max-width: 100%;
+			margin-bottom: 5px;
+			background-color: #fff;
+			border: none;
+			text-align: center;
+		}
+		.table1 td {
+			border: none;
+		}
+	</style>
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<!-- include Navbar -->
+		{% if user.is_authenticated %}
+			{% include 'mr/navbar_empreport.html'%}
+
+			<!-- Main Sidebar Container -->
+			{% include 'mr/mainsidebar.html' %}
+		{% endif %}
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+  		<div class="content">
+    		<div class="container-fluid">
+    			<div class="row">
+        			<div class="col-lg-12">
+        				{% block content %}
+
+    					{% endblock content %}
+        			</div>
+        		</div> 
+    		</div><!-- container-fluid -->
+    	</div> <!-- content -->
+
+    	</div> <!-- contain wrapper -->
+
+	</div> <!-- end wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+</body>
+</html>

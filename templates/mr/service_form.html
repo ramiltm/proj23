@@ -1,0 +1,54 @@
+{% extends "mr/base.html" %}
+
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+	
+	<p><h4 style="font-size: 24px; color: purple;"> Service Data Entry</h4><p>
+
+	<form action="" method="post" autocomplete="off">
+		{% csrf_token %}
+		<!-- {{ form|crispy }} for all fields in the table -->
+
+		<div class="row">
+			<div class="col-md-4">
+				{{ form.prop|as_crispy_field }}
+			</div>
+			<div class="col-md-4">
+				{{ form.date|as_crispy_field }}
+			</div>
+			<div class="col-md-4">
+				{{ form.issues|as_crispy_field }}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				{{ form.service_rendered|as_crispy_field }}
+			</div>
+			<div class="col-md-6">
+				{{ form.action_officer|as_crispy_field }}
+			</div>
+			<div class="col-md-12">
+				{{ form.remarks|as_crispy_field }}
+			</div>
+		</div>
+		
+
+		<div class="row">
+			<div class="col-md-8">
+				<button type="submit" class="btn btn-success"><i class="fas fa-database"></i> Submit</button>
+			</div>
+			<div class="col-md-4">
+				<a href="{% url 'service_list' %}" class="btn btn-secondary float-right">
+					<i class="fas fa-stream"></i> Back to List
+				</a>
+		</div>
+
+
+
+
+
+	</form>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "mr/base.html" %}
+
+{% block content %}
+
+	{% for property in propList %}
+
+	<ul>
+		<li>{{ property.user.firstname }}</li>
+		<li>{{ property.asset_type }}</li>
+		<li>{{ property.serial_no }}</li>
+
+		<h4>Services rendered</h4>
+			{% for service in property.service_set.all %}
+				
+					<li>{{ service.prop.serial_no }}</li>
+					<li>{{ service.date }}</li>
+					<li>{{ service.issues}}
+				
+			{% endfor %}
+	</ul>
+
+	{% endfor %}
+
+{% endblock content %}

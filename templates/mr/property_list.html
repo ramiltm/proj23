@@ -1,0 +1,68 @@
+{% extends "mr/base.html" %}
+
+{% load userfilter_extras %}
+
+
+
+{% block content %}
+			
+	<p><h4 style="font-size: 24px; color: purple;"> List of Equipment/s issued</h4><p>
+	
+	<!-- <table class="table table-borderless table-hover">
+		<thead class="border-bottom font-weight-bold"> -->
+	<table class="table table-sm table-hover">
+		<thead class="border-bottom font-weight-bold bg-secondary">
+			<tr>
+				<td>Actual User</td>  <!-- to be deleted -->
+				<td>Asset Type</td>
+				<td>Unit/Office</td>
+				<td>Description</td>
+				<td>Property No.</td>
+				<td>Serial No.</td>
+				<td>Issued to</td>
+				<td>Original Value</td>
+				<td>
+				
+					{% if request.user|has_group:"App_Admin" %}
+					<a href="{% url 'property_insert' %}" class="btn btn-outline-success">
+						<i class="fas fa-plus"></i> Add New
+					</a>
+					{% endif %}
+				
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for property in property_list %}
+				<tr>
+					<td>{{ property.user }} x</td>  <!-- to be deleted -->
+					<td>{{ property.asset_type }}</td>
+					<td>{{ property.unit_office}}
+					<td>{{ property.decription }}</td>
+					<td>{{ property.property_no}}</td>
+					<td><a href="/mr/service_propDetail/{{property.pk}}/">{{ property.serial_no}}</a></td>
+					<td>{{ property.issued_to}}</td>
+					<td>{{ property.original_value }}
+
+					<td>
+						{% if request.user|has_group:"App_Admin" %}
+						<a href="{% url 'property_update' property.id %}" class="btn text-secondary px-0">
+							<i class="far fa-edit fa-lg"></i>
+						</a>
+						<form action="{% url 'property_delete' property.id %}" method="post" class=d-inline>
+							{% csrf_token %}
+							<button type="submit" class="btn">
+								<i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+							</button>
+						</form>
+						{% endif %}
+					</td>
+					
+					<td></td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock content %}

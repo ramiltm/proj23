@@ -1,0 +1,46 @@
+{% extends "mr/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4 style="font-size: 24px; color: purple;">Property Services Rendered</h4>
+        </div>
+
+        <div class="col-4">
+            <form class="form-inline ml-auto" method='GET' action=''>
+                <input class="form-control mr-sm-2" type='text' name='q' placeholder='User/Asset Type' aria-label="Search"/>
+                <!-- <input type='submit' value='Search' /> -->
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+            </form>
+        </div>
+    </div> <hr />
+</div>
+
+{% if propservpages %}
+	{% for propserv in propservpages %}
+		<div class="container">
+			<div class="row">
+	        	<div class="col-10">
+					<h4>{{ propserv.asset_type }}</h4>
+				</div>
+
+				<div class="col-2 align-self-center">
+	                        <!-- <button type="button" class="btn btn-outline-dark">Details</button> -->
+	                        <a href="/mr/propserv/{{ propserv.id }}" class="btn btn-outline-dark" role="button" aria-pressed="true">Show Details</a>
+            	</div>
+
+            	<div class="row">
+        		&nbsp;  Asset Type: &nbsp; <h5> {{ propserv.asset_type }} &nbsp; </h5> Prop. No.: &nbsp; <h5>{{ propserv.property_no}} &nbsp;</h5> Description: &nbsp;<h5>{{ propserv.decription }}</h5>
+        		</div> <hr />
+
+        	</div> 
+		</div><!-- end container -->
+
+	{% endfor %}
+
+{% endif%}
+
+
+{% endblock content %}

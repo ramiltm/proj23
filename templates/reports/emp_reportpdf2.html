@@ -1,0 +1,49 @@
+{% extends "mr/base_empreport.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+    	<div class="col-10">
+            <h4 style="font-size: 24px; color: purple;">Employee Detail</h4>
+        </div>
+
+        <!-- <div class="col-2">
+		<a href="{% url 'employee_list' %}" class="btn btn-secondary float-right">
+			<i class="fas fa-stream"></i> Back to List
+		</a>
+	   </div> -->
+    </div> <hr />
+
+    
+
+    <div class="row">
+			<h3 class="text-muted"> {{empDet.lastname}}, {{ empDet.firstname }} {{ empDet.middleI}}</h3>
+    </div>
+
+    <div class="row">
+    	<div class="col-md-6">
+    		Division: <strong> {{ empDet.division }}</strong>
+    	</div>
+    	<div class="col-md-6">
+    		Professinal Status: <strong>{{ empDet.profstatus }}</strong>
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col-md-6">
+    		Position: <strong>{{ empDet.position }}</strong>
+    	</div>
+    	<div class="col-md-6">
+    		Emp. Status: <strong>{{ empDet.empStatus}}</strong>
+    	</div>
+    </div>
+
+   <!--  <div class="col-md-12 float-right">
+		<a href="{% url 'employee_list' %}" class="btn btn-secondary float-right">
+			<i class="fas fa-stream"></i> Back to List
+		</a>
+	</div> -->
+</div>
+
+
+{% endblock content %}

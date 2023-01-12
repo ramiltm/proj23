@@ -1,0 +1,14 @@
+{% extends "mr/base.html" %}
+
+{% block content %}
+
+	{% for service in service.product_set.all %}
+
+		<ul>
+			<li> {{ service.user }} </li>
+			<li> {{ service.prop }}
+		</ul>
+
+	{% endfor %}
+	
+{% endblock content %}

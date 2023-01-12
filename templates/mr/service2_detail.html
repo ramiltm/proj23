@@ -1,0 +1,15 @@
+{% extends "mr/base.html" %}
+
+{% block content %}
+
+	<h2>{{ service.property_no }}</h2>
+        <br/>
+        <i>As written by {{ property.user.first_name }}</i>
+        <br/><br/>
+        <blockquote> {{ issue.text }}</blockquote>
+        <h3>Comments</h3>
+        {% for comment in comments %}
+            <li>{{comment}}</li>
+        {% endfor %}
+
+{% endblock content%}

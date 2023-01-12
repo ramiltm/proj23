@@ -1,0 +1,70 @@
+<!-- service_report_pdf -->
+{% extends "mr/base.html" %}
+
+{% load userfilter_extras %}
+
+{% block title %} PDF Report - Services Rendered {% endblock title %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-10">
+		<h4 style="font-size: 24px; color: purple;"> Services Rendered</h4>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		User Name: <strong>{{ serviceprop.user.lastname}}, {{ serviceprop.user.firstname }} {{ serviceprop.user.middleI }}</strong>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="row">
+		Property No.: <strong> {{ serviceprop.property_no }}</strong>
+		&nbsp; &nbsp; &nbsp;Serial No.: &nbsp;<strong>{{ serviceprop.serial_no }}</strong>
+		&nbsp; &nbsp; &nbsp;Description: &nbsp;<strong>{{ serviceprop.decription }}</strong>
+	</div>
+</div>
+
+
+
+<!-- <p>Property No.: <h5>{{ serviceprop.prop.property_no }}</h5> Serial No.: <h5>{{ serviceprop.prop.serial_no }}</h5></p>
+<p>Description: <h5>{{ serviceprop.prop.decription }}</h5></p> -->
+
+<!-- <table class="table table-sm table-hover"> -->
+<!-- <table class="table table-sm table-bordered table-hover"> -->
+	<table class="table">
+			<tr>
+				
+				<th>Date</th>
+				<th>Issues</th>
+				<th>Service Rendered</th>
+				<th>Action Officer</th>
+				<th>Remarks</th>
+				<!-- add new button -->
+			</tr>
+		</thead>
+		<tbody>
+			
+				<tr>
+				{% for serv in serviceprop.propservice.all%}	
+					<td>{{ serv.date}}</td>
+					<td>{{ serv.issues }}</td>
+					<td>{{ serv.service_rendered }}</td>
+					<td>{{ serv.action_officer}}</td>
+					<td>{{ serv.remarks}}</td>
+				
+					<!-- admin module -->
+					
+				</tr>
+				{% endfor %}
+
+		</tbody>
+	</table>
+	
+
+{% endblock content %}

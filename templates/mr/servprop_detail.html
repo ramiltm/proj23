@@ -1,0 +1,65 @@
+{% extends "mr/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h4 style="font-size: 24px; color: purple;">Property Services Rendered</h4>
+        </div>
+
+        <div class="col-4">
+            <form class="form-inline ml-auto" method='GET' action=''>
+                <input class="form-control mr-sm-2" type='text' name='q' placeholder='User/Asset Type' aria-label="Search"/>
+                <!-- <input type='submit' value='Search' /> -->
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Search</button>
+            </form>
+        </div>
+    </div> <hr />
+</div>
+
+{% if servproppages %}
+	{% for servprop in servproppages %}
+		<div class="container">
+			<div class="row">
+	        	<div class="col-10">
+					<h4>{{ servprop.prop.user }}</h4>
+				</div>
+
+				<div class="col-2 align-self-center">
+	                        <!-- <button type="button" class="btn btn-outline-dark">Details</button> -->
+	                        <a href="/mr/servprop/{{ servprop.id }}/" class="btn btn-outline-dark" role="button" aria-pressed="true">Show Details</a>
+            	</div>
+
+            	<div class="row">
+        		&nbsp;  Asset Type: &nbsp; <h5> {{ servprop.prop.asset_type }} &nbsp; </h5> Prop. No.: &nbsp; <h5>{{ servprop.prop.property_no}} &nbsp;</h5> Description: &nbsp;<h5>{{ servprop.prop.decription }}</h5>
+        		</div> <hr />
+
+        	</div> 
+		</div><!-- end container -->
+
+    {{ servprop.service_rendered }}
+
+
+	{% endfor %}
+
+{% endif%}
+
+	<div class="pagination">
+        <span class="step-links">
+            {% if servproppages.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page=={{ servproppages.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ servproppages.number }} of {{ servproppages.paginator.num_pages }}.
+            </span>
+
+            {% if servproppages.has_next %}
+                <a href="?page={{ servproppages.next_page_number }}">next</a>
+                <a href="?page={{ servproppages.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock content %}
